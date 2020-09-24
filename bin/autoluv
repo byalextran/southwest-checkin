@@ -1,0 +1,27 @@
+#!/usr/bin/env ruby
+
+require "autoluv"
+
+command = ARGV[0].to_s
+confirmation_number = ARGV[1]
+first_name = ARGV[2]
+last_name = ARGV[3]
+to = ARGV[4]
+bcc = ARGV[5]
+
+begin
+  case command.downcase
+  when "schedule"
+    Autoluv::SouthwestClient.schedule(confirmation_number, first_name, last_name, to, bcc)
+  when "checkin"
+    Autoluv::SouthwestClient.check_in(confirmation_number, first_name, last_name, to, bcc)
+  else
+    puts "Command not recognized."
+  end
+rescue RestClient::ExceptionWithResponse => ewr
+  Autoluv::notify_user(false, confirmation_number, first_name, last_name, { to: to, bcc: bcc, exception_message: JSON.parse(ewr.response)["message"], exception: ewr })
+rescue JSON::ParserError => pe
+  Autoluv::notify_user(false, confirmation_number, first_name, last_name, { to: to, bcc: bcc, exception_message: pe.message, exception: pe })
+rescue => e
+  Autoluv::notify_user(false, confirmation_number, first_name, last_name, { to: to, bcc: bcc, exception_message: e.message, exception: e })
+end
