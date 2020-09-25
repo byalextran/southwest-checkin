@@ -1,8 +1,10 @@
 require "autoluv/version"
 require "autoluv/southwestclient"
 require "pony"
-
+require "logger"
+require "fileutils"
 require "dotenv"
+
 Dotenv.load("#{Dir.home}/.autoluv.env")
 
 module Autoluv

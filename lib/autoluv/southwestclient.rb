@@ -6,8 +6,6 @@ require "shellwords"
 
 module Autoluv
   class SouthwestClient
-    @confirmation_number = @first_name = @last_name = @options = nil
-
     # minimum required headers for all API calls
     DEFAULT_HEADERS = {
       "Content-Type": "application/json",
