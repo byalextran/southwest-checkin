@@ -55,14 +55,6 @@ module Autoluv
     # only send an email if we have all the environmental variables set
     return if PONY_OPTIONS.values.any? &:empty?
 
-    # if we're BCCing someone, swap the fields so they don't see your TO address.
-    # this is really for my personal use-case.
-    unless bcc.nil?
-      temp = bcc
-      to = bcc
-      bcc = temp
-    end
-
     Pony.mail(PONY_OPTIONS.merge({
       to: to,
       bcc: bcc,
