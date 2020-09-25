@@ -14,7 +14,7 @@ Automatically check in to Southwest flights using this easy-to-use gem. It'll al
 
 Both departing and returning flights (if applicable) will be scheduled. After scheduling, there's no need to keep the terminal window open or active. The check in will happen behind the scenes at the appropriate time.
 
-**Note:** If a name includes a space, wrap it in double quotes (e.g. "John Doe")
+**Note:** If a first or last name includes a space, wrap it in double quotes (e.g. "Mary Kate")
 
 ### Schedule a Check In With Email Notification
 
@@ -22,13 +22,13 @@ Follow the instructions below for configuring email notifications.
 
     autoluv schedule ABCDEF John Doe john.doe@email.com
 
-A second email address can be passed in as well and get the results BCCed to it.
+A second email address can also be passed in to receive notifications (BCCed).
 
     autoluv schedule ABCDEF John Doe john.doe@email.com second.email@bcc.com
 
 ### Check In Immediately
 
-    autoluv checkin ABCDEF Jane Doe
+    autoluv checkin ABCDEF John Doe
 
 ## Configure Email Notifications
 
@@ -52,7 +52,7 @@ LUV_PORT        = 587
 
 **Step 3:** Replace the values with the appropriate SMTP settings for your email provider. `LUV_FROM_EMAIL` should be the email address associated with `LUV_USER_NAME`.
 
-If your email account has two-factor authentication enabled, be sure to use an app-specific password above (and *not* your account password).
+If your email account has two-factor authentication enabled, be sure to use an app-specific password and *not* your account password.
 
 **Step 4:** Hit `Ctrl+O` to save the file and then `Ctrl+X` to exit the text editor.
 
@@ -62,7 +62,7 @@ If your email account has two-factor authentication enabled, be sure to use an a
 
 ## Manage Check-Ins
 
-`autoluv` uses the `at` command behind the scenes to check in at a specific time. Use the related `atq` and `atrm` commands to manage them.
+`autoluv` uses the `at` command behind the scenes to check in at a specific time. Use the related `atq` and `atrm` commands to manage check-ins.
 
 ### View Scheduled Check-Ins
 Make note of the first column's number.
@@ -92,6 +92,3 @@ Bug reports and pull requests are welcome.
 ## License
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-
-# TODO: try getting it working on macos.
-# TODO: does scheduling pass two-word names to checkin properly?
