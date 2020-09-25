@@ -2,6 +2,7 @@ require "rest-client"
 require "securerandom"
 require "json"
 require "tzinfo"
+require "shellwords"
 
 module Autoluv
   class SouthwestClient
@@ -27,7 +28,7 @@ module Autoluv
 
         puts "Scheduling flight departing #{flight[:airport_code]} at #{flight[:departure_time]} on #{flight[:departure_date]}."
 
-        command = "echo 'autoluv checkin #{confirmation_number} #{first_name} #{last_name} #{to} #{bcc}' | at #{check_in_time.strftime('%I:%M %p %m/%d/%y')}"
+        command = "echo 'autoluv checkin #{confirmation_number} #{Shellwords.shellescape(first_name)} #{Shellwords.shellescape(last_name)} #{to} #{bcc}' | at #{check_in_time.strftime('%I:%M %p %m/%d/%y')}"
         `#{command}`
 
         puts unless x == flights.size - 1
