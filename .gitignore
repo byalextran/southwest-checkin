@@ -2,3 +2,4 @@
 /*.gem
 /logs/
 /pkg/
+/Gemfile.lock
