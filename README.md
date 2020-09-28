@@ -2,29 +2,35 @@
 
 Automatically check in to Southwest flights using this easy-to-use gem. It'll also email you the results so you know ASAP whether a check in was successful. Seconds count when you're fighting for that window or aisle seat!
 
+## Requirements
+
+* A *nix-based server that will be on when you need to check in
+* Ruby 2.3 or higher
+* The `at` command
+
+Tested and working on an Ubuntu 20.04 server (hosted by DigitalOcean).
+
 ## Installation
 
     gem install autoluv
 
 ## Usage
 
-### Schedule a Check In
+### Schedule a Check-In
 
     autoluv schedule ABCDEF John Doe
 
-Both departing and returning flights (if applicable) will be scheduled. After scheduling, there's no need to keep the terminal window open or active. The check in will happen behind the scenes at the appropriate time.
+Both departing and returning flights (if applicable) will be scheduled for all passengers tied to the confirmation number. After scheduling, there's no need to keep the terminal window open or active. The check in will happen behind the scenes at the appropriate time.
 
 **Note:** If a first or last name includes a space, wrap it in double quotes (e.g. "Mary Kate")
 
-### Schedule a Check In With Email Notification
+### Schedule a Check-In With Email Notification
 
-Follow the instructions below for configuring email notifications.
+Before using this command, follow the instructions below to configure the required settings.
 
-    autoluv schedule ABCDEF John Doe john.doe@email.com
+    autoluv schedule ABCDEF John Doe john.doe@email.com optional@bcc.com
 
-A second email address can also be passed in to receive notifications (BCCed).
-
-    autoluv schedule ABCDEF John Doe john.doe@email.com second.email@bcc.com
+The second email address is optional and will be BCCed the results.
 
 ### Check In Immediately
 
@@ -32,9 +38,9 @@ A second email address can also be passed in to receive notifications (BCCed).
 
 ## Configure Email Notifications
 
-This is optional, however, highly recommended. Especially if a scheduled check in fails, you'll get notified and can manually check in. Every second counts!
+This is optional, however, highly recommended. Especially if a scheduled check-in fails, you'll get notified and can manually check in. Every second counts!
 
-On a successful check in, the email will share boarding positions for each passenger.
+Boarding positions are shown for each passenger when a check-in succeeds.
 
 **Step 1:** Create the file `.autoluv.env` in your user's home directory.
 
