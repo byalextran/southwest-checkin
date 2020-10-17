@@ -62,6 +62,14 @@ If your email account has two-factor authentication enabled, be sure to use an a
 
 **Step 4:** Hit `Ctrl+O` to save the file and then `Ctrl+X` to exit the text editor.
 
+### Test Email Notifications
+
+To verify your SMTP settings, schedule a check-in with invalid information and a valid email address.
+
+    autoluv schedule AAAAAA Fake Name valid@email.com
+
+If everything is set up correctly, you'll get an email notifying you of an unsuccessful check-in. 
+
 ### Get Text Instead of Email Notifications
 
 [Use this Zap](https://zapier.com/apps/email/integrations/sms/9241/get-sms-alerts-for-new-email-messages) to get a custom Zapier email address that forwards emails as text messages. It's handy for people like me who don't have email notifications enabled on their phone or computer and want check-in results ASAP.

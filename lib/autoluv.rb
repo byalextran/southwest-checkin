@@ -57,11 +57,15 @@ module Autoluv
     # only send an email if we have all the environmental variables set
     return if PONY_OPTIONS.values.any? &:empty?
 
-    Pony.mail(PONY_OPTIONS.merge({
-      to: to,
-      bcc: bcc,
-      subject: subject,
-      body: body,
-    }))
+    begin
+      Pony.mail(PONY_OPTIONS.merge({
+        to: to,
+        bcc: bcc,
+        subject: subject,
+        body: body,
+      }))
+    rescue => e
+      puts e.message
+    end
   end
 end
