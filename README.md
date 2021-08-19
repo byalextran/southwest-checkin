@@ -1,3 +1,5 @@
+As of August 2021, Southwest made a change to their API that broke this (and similar) check-in apps. I'm looking into a fix but no guarantees on a timeline since I've got higher priority things I need to work on right now. 
+
 # Southwest Checkin
 
 Automatically check in to Southwest flights using this easy-to-use gem. It'll also email you the results so you know ASAP whether a check in was successful. Seconds count when you're fighting for that window or aisle seat!
