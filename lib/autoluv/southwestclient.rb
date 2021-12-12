@@ -3,9 +3,6 @@ require "securerandom"
 require "json"
 require "tzinfo"
 require "shellwords"
-require "dotenv"
-
-Dotenv.load("#{Dir.home}/.autoluv.env")
 
 module Autoluv
   class SouthwestClient
@@ -22,8 +19,6 @@ module Autoluv
     TIME_ZONES_PATH = File.expand_path("../../data/airport_time_zones.json", __dir__)
 
     def self.schedule(confirmation_number, first_name, last_name, to = nil, bcc = nil)
-      self.check_for_header_file
-
       flights = self.departing_flights(confirmation_number, first_name, last_name)
 
       flights.each_with_index do |flight, x|
@@ -39,8 +34,6 @@ module Autoluv
     end
 
     def self.check_in(confirmation_number, first_name, last_name, to = nil, bcc = nil)
-      self.check_for_header_file
-
       check_in = attempt = nil
 
       # try checking in multiple times in case the our server time is out of sync with Southwest's.
@@ -92,12 +85,6 @@ module Autoluv
     def self.headers
       # required now for all API calls
       DEFAULT_HEADERS.merge({ "X-User-Experience-ID": SecureRandom.uuid })
-    end
-
-    def self.check_for_header_file
-      unless File.exist?(ENV["LUV_HEADERS_FILE"])
-        abort "Please create a valid Southwest header file before continuing. Learn more: https://github.com/byalextran/southwest-headers"
-      end
     end
 
     def self.departing_flights(confirmation_number, first_name, last_name)

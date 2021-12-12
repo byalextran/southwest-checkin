@@ -10,6 +10,10 @@ to = ARGV[4]
 bcc = ARGV[5]
 
 begin
+  unless File.exist?(ENV["LUV_HEADERS_FILE"].to_s)
+    abort "Please create a valid Southwest header file before continuing. Learn more: https://github.com/byalextran/southwest-headers"
+  end
+
   case command.downcase
   when "schedule"
     Autoluv::SouthwestClient.schedule(confirmation_number, first_name, last_name, to, bcc)
