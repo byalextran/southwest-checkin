@@ -1,5 +1,3 @@
-As of August 2021, Southwest made a change to their API that broke this (and similar) check-in apps. I'm looking into a fix but no guarantees on a timeline since I've got higher priority things I need to work on right now. 
-
 # Southwest Checkin
 
 Automatically check in to Southwest flights using this easy-to-use gem. It'll also email you the results so you know ASAP whether a check in was successful. Seconds count when you're fighting for that window or aisle seat!
@@ -13,6 +11,28 @@ Automatically check in to Southwest flights using this easy-to-use gem. It'll al
 Tested and working on an Ubuntu 20.04 server (hosted by DigitalOcean).
 
 ## Installation
+
+### Get Southwest Headers
+
+The Southwest API now requires some randomly generated headers to check in. Because these headers change at a set interval, they need to be constantly refreshed for any check-in script (like this one) to work. To get these headers, please follow the instructions here:
+
+https://github.com/byalextran/southwest-headers
+
+Once a cron job has been scheduled, do these steps:
+
+**Step 1:** Create the file `.autoluv.env` in your user's home directory.
+
+    nano ~/.autoluv.env
+
+**Step 2:** Copy/paste the following into the text editor.
+
+    LUV_HEADERS_FILE  = /PATH/TO/southwest_headers.json
+
+**Step 3:** Update the path (and filename if changed from the default) to the correct path of the headers file.
+
+**Step 4:** Hit `Ctrl+O` to save the file and then `Ctrl+X` to exit the text editor.
+
+### Install Gem
 
     gem install autoluv
 
@@ -44,7 +64,7 @@ This is optional, however, highly recommended. Especially if a scheduled check-i
 
 Boarding positions are shown for each passenger when a check-in succeeds.
 
-**Step 1:** Create the file `.autoluv.env` in your user's home directory.
+**Step 1:** Open/create the file `.autoluv.env` in your user's home directory.
 
     nano ~/.autoluv.env
 
@@ -70,7 +90,7 @@ To verify your SMTP settings, schedule a check-in with invalid information and a
 
     autoluv schedule AAAAAA Fake Name valid@email.com
 
-If everything is set up correctly, you'll get an email notifying you of an unsuccessful check-in. 
+If everything is set up correctly, you'll get an email notifying you of an unsuccessful check-in.
 
 ### Get Text Instead of Email Notifications
 
