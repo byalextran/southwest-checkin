@@ -1,0 +1,18 @@
+version: "3"
+services:
+  southwest-checkin:
+    container_name: southwest_checkin
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: southwest-checkin
+    environment:
+      LUV_HEADERS_FILE: /home/swcheckin/data/southwest_headers.json
+      LUV_FROM_EMAIL: from@email.com
+      LUV_USER_NAME: from@email.com
+      LUV_PASSWORD: supersecurepassword
+      LUV_SMTP_SERVER: smtp.email.com
+      LUV_PORT: 587
+    command: ["/home/swcheckin/runner.sh"]
+
