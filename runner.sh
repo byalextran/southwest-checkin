@@ -1,5 +1,8 @@
 #!/bin/sh
 
+#start ATD
+service atd start
+
 ## Initial starup getting sw headers
 echo "---- Creating Southwest Headers ----"
 cd /home/swcheckin/southwest-headers && \

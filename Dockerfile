@@ -5,7 +5,7 @@ FROM selenium/standalone-chrome
 USER root
 RUN \
   sudo apt-get update && \
-  sudo apt-get install -y ruby ruby-dev git python3-pip 
+  sudo apt-get install -y ruby ruby-dev git python3-pip at
 
 # Install pip/selenium
 RUN python3 -m pip install selenium
