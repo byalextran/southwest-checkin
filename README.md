@@ -116,6 +116,11 @@ Make note of the first column's number.
 The last line in the output will show you the confirmation number and name.
 
     at -c 11
+    
+### View All Scheduled Check-In Details
+Display the list of all scheduled confirmation numbers and names.
+
+    atq | awk '{ print "at -c " $1 }' | bash | grep autoluv
 
 ## Update Gem
 
