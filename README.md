@@ -2,6 +2,10 @@
 
 Automatically check in to Southwest flights using this easy-to-use gem. It'll also email you the results so you know ASAP whether a check in was successful. Seconds count when you're fighting for that window or aisle seat!
 
+## February 2022 Update
+
+It appears [southwest-headers](https://github.com/byalextran/southwest-headers) using the latest versions of Chrome (110) and undetected-chromedriver (3.4.6) produces an invalid header file. [Read this thread for a workaround](https://github.com/byalextran/southwest-headers/issues/6).
+
 ## Requirements
 
 * A *nix-based server that will be on when you need to check in
@@ -116,7 +120,7 @@ Make note of the first column's number.
 The last line in the output will show you the confirmation number and name.
 
     at -c 11
-    
+
 ### View All Scheduled Check-In Details
 Display the list of all scheduled confirmation numbers and names.
 
