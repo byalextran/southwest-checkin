@@ -48,7 +48,7 @@ module Autoluv
           check_in = RestClient.post("#{CHECK_IN_URL}", post_data.to_json, JSON.parse(File.read(ENV["LUV_HEADERS_FILE"])))
           break
         rescue RestClient::ExceptionWithResponse => ewr
-          sleep(1)
+          sleep(0.5)
           next unless x == num_attempts - 1
 
           raise
@@ -73,7 +73,7 @@ module Autoluv
       end
 
       metadata = {
-        end_time: end_time.strftime("%I:%M.%L"),
+        end_time: end_time.strftime("%I:%M:%S"),
         elapsed_time: (end_time - start_time).round(2),
         attempts: attempt,
       }
